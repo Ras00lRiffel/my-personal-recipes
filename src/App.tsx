@@ -1,5 +1,7 @@
 import axios from "axios";
+import "./assets/styles/styles.css";
 import { useEffect, useState } from "react";
+import Header from "./components/Header/Header";
 //import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
@@ -25,10 +27,15 @@ const App = () => {
         <Routes>
           <Route path="/" />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
+
+      #display the fetched recipes
       {recipes.map((recipe) => (
         <p>{recipe.id}</p>
       ))}
+      */}
+
+      <Header />
     </div>
   );
 };
