@@ -1,1 +1,24 @@
+.header {
+  //background-color: #fff3e1;
+  padding: 20px;
+  text-align: center;
+  .header-logo {
+    height: 150px;
+    width: auto;
 
+    border-radius: 250px;
+  }
+
+  .header-search {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 50px;
+    border: 1px solid #ecdcc1;
+    background-color: #f7eee0;
+
+    &::placeholder {
+      text-align: center;
+    }
+  }
+}
