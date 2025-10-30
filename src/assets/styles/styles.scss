@@ -13,8 +13,7 @@
 
   /* Colors */
   --text-color: #2b2b2b;
-  --heading-color: #1a1a1a;
-  --background-color: #fff3e1; /* your palette base */
+  --heading-color: #ff8904;
 }
 
 /* Global reset */
@@ -22,7 +21,6 @@ body {
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
   color: var(--text-color);
-  background-color: var(--background-color);
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -39,7 +37,7 @@ h6 {
   font-weight: 700;
   color: var(--heading-color);
   line-height: 1.2;
-  margin: 1.2em 0 0.5em;
+  margin: 0.5em 0 0.5em;
 }
 
 /* Font sizing (modular scale) */
