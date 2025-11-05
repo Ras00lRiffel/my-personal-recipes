@@ -3,7 +3,7 @@ import logo from "../../assets/images/logo-v2.png";
 const Header = () => {
   return (
     <div className="header">
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row items-center max-w-7xl m-auto">
         <div className="basis-1/4 pr-4 pl-4">
           <img className="header-logo" src={logo} alt="My Recipes Logo" />
         </div>
