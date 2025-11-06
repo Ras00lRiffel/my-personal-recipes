@@ -1,0 +1,21 @@
+.recipe-card {
+  .recipe-header {
+    text-align: center;
+    .recipe-img {
+      display: inline-block;
+      margin-bottom: -20px;
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+    }
+  }
+  .recipe-body {
+    background-color: white;
+    .cat-text {
+      font-size: 0.875rem;
+      color: #a69e98;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+  }
+}

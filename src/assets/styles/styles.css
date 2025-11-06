@@ -1,5 +1,8 @@
 /* Import Google Font */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+.header .header-top {
+  background-color: #fff3e1;
+}
 .header .header-logo {
   height: 70px;
   width: auto;
@@ -32,6 +35,26 @@
 .header .header-desc p {
   color: #fff5ec;
   z-index: 1;
+}
+
+.recipe-card .recipe-header {
+  text-align: center;
+}
+.recipe-card .recipe-header .recipe-img {
+  display: inline-block;
+  margin-bottom: -20px;
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+}
+.recipe-card .recipe-body {
+  background-color: white;
+}
+.recipe-card .recipe-body .cat-text {
+  font-size: 0.875rem;
+  color: #a69e98;
+  font-weight: 600;
+  margin-top: 10px;
 }
 
 :root {
@@ -103,4 +126,8 @@ small {
 /* Optional paragraph spacing */
 p + p {
   margin-top: 1em;
+}
+
+.body-content {
+  background-color: #fff3e1;
 }

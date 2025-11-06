@@ -2,7 +2,7 @@ import axios from "axios";
 import "./assets/styles/styles.css";
 import { useEffect, useState } from "react";
 import Header from "./components/Header/Header";
-import Recipe from "./components/Recipes/Recipe";
+import Recipes from "./components/Recipes/Recipes";
 //import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
@@ -24,17 +24,16 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* #display the fetched recipes
-      {recipes.map((recipe) => (
+      {/* #display the fetched recipes */}
+      {/* {recipes.map((recipe) => (
         <p>{recipe.id}</p>
-      ))}
-      */}
+      ))} */}
 
       <Header />
-      <div className="max-w-7xl m-auto p-4">
+      <div className="max-w-7xl m-auto p-4 body-content">
         <p>You have 10 Recipes!</p>
 
-        <Recipe />
+        <Recipes recipes={recipes} />
       </div>
     </div>
   );
