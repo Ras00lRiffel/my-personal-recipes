@@ -26,7 +26,7 @@ const Recipe = ({
       <div className="recipe-body p-4 pt-9 text-center">
         <div className="recipe-text">
           <h3>{name}</h3>
-          <span className="cat-text mt-2">Abubakr Solomon in Supper</span>
+          <span className="cat-text mt-2">Abubakr Solomon's Recipes</span>
         </div>
         <div className="recipe-footer">
           <a href="#">
