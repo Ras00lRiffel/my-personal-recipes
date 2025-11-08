@@ -39,11 +39,11 @@
 
 .recipe-card .recipe-header {
   text-align: center;
+  padding: 0 20px;
 }
 .recipe-card .recipe-header .recipe-img {
   display: inline-block;
   margin-bottom: -20px;
-  max-width: 300px;
   width: 100%;
   height: auto;
 }
@@ -55,6 +55,9 @@
   color: #a69e98;
   font-weight: 600;
   margin-top: 10px;
+}
+.recipe-card .recipe-footer button {
+  cursor: pointer;
 }
 
 :root {
@@ -76,6 +79,7 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  background-color: #fff3e1;
 }
 
 /* Headings */

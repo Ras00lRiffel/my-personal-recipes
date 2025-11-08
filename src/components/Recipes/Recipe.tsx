@@ -15,15 +15,17 @@ const Recipe = ({ id, name, image }: RecipeProps) => {
       <div className="recipe-body p-4 pt-9 text-center">
         <div className="recipe-text">
           <h3>{name}</h3>
-          <span className="cat-text mt-2">Abubakr Solomon in Sweet Treats</span>
+          <span className="cat-text mt-2">Abubakr Solomon in Supper</span>
         </div>
         <div className="recipe-footer">
-          <button
-            type="button"
-            className="w-full p-2 mt-4 bg-orange-400 text-white rounded-lg hover:bg-orange-500 transition"
-          >
-            View Recipe
-          </button>
+          <a href="#">
+            <button
+              type="button"
+              className="w-full p-2 mt-4 bg-orange-400 text-white rounded-lg hover:bg-orange-500 transition"
+            >
+              View Recipe
+            </button>
+          </a>
         </div>
       </div>
     </div>
