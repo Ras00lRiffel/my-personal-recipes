@@ -1,12 +1,23 @@
 import images from "../../assets/images/butter-chicken.jpg";
+import Modal from "../../components/Modal/Modal";
+import { useState } from "react";
 
 interface RecipeProps {
   id: number;
   name: string;
   image: string;
+  ingredients: string[];
+  instructions?: string;
 }
 
-const Recipe = ({ id, name, image }: RecipeProps) => {
+const Recipe = ({
+  id,
+  name,
+  image,
+  ingredients,
+  instructions,
+}: RecipeProps) => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div key={id} className="recipe-card">
       <div className="recipe-header">
@@ -22,12 +33,22 @@ const Recipe = ({ id, name, image }: RecipeProps) => {
             <button
               type="button"
               className="w-full p-2 mt-4 bg-orange-400 text-white rounded-lg hover:bg-orange-500 transition"
+              onClick={() => setIsOpen(true)}
             >
               View Recipe
             </button>
           </a>
         </div>
       </div>
+      {isOpen && (
+        <Modal
+          setIsOpen={setIsOpen}
+          name={name}
+          image={image}
+          ingredients={ingredients}
+          instructions={instructions}
+        />
+      )}
     </div>
   );
 };
