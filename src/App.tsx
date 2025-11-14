@@ -3,7 +3,8 @@ import "./assets/styles/styles.css";
 import { useEffect, useState } from "react";
 import Header from "./components/Header/Header";
 import Recipes from "./components/Recipes/Recipes";
-//import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Add from "./pages/Add";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
   // Variable to set/update the recipes
@@ -24,17 +25,16 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* #display the fetched recipes */}
-      {/* {recipes.map((recipe) => (
-        <p>{recipe.id}</p>
-      ))} */}
-
-      <Header />
-      <div className="max-w-7xl m-auto p-4 body-content">
-        <p>You have 10 Recipes!</p>
-
-        <Recipes recipes={recipes} />
-      </div>
+      <BrowserRouter>
+        <Header />
+        <div className="max-w-7xl m-auto p-4 body-content">
+          <Routes>
+            <Route path="/" element={<Recipes recipes={recipes} />} />
+            <Route path="/add" element={<Add />} />
+            {/* <Route path="/update/:id" element={} /> */}
+          </Routes>
+        </div>
+      </BrowserRouter>
     </div>
   );
 };

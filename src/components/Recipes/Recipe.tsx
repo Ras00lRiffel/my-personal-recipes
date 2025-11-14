@@ -23,7 +23,7 @@ const Recipe = ({
       <div className="recipe-header">
         <img src={images} alt={name} className="recipe-img" />
       </div>
-      <div className="recipe-body p-4 pt-9 text-center">
+      <div className="recipe-body p-4 text-center">
         <div className="recipe-text">
           <h3>{name}</h3>
           <span className="cat-text mt-2">Abubakr Solomon's Recipes</span>

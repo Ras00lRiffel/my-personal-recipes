@@ -4,13 +4,15 @@
     padding: 0 20px;
     .recipe-img {
       display: inline-block;
-      margin-bottom: -20px;
+      margin-bottom: -100px;
       width: 100%;
       height: auto;
     }
   }
   .recipe-body {
     background-color: white;
+    box-shadow: 5px 5px 20px -10px;
+    padding-top: 100px;
     .cat-text {
       font-size: 0.875rem;
       color: #a69e98;

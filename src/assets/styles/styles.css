@@ -43,12 +43,14 @@
 }
 .recipe-card .recipe-header .recipe-img {
   display: inline-block;
-  margin-bottom: -20px;
+  margin-bottom: -100px;
   width: 100%;
   height: auto;
 }
 .recipe-card .recipe-body {
   background-color: white;
+  box-shadow: 5px 5px 20px -10px;
+  padding-top: 100px;
 }
 .recipe-card .recipe-body .cat-text {
   font-size: 0.875rem;
@@ -61,7 +63,7 @@
 }
 
 .darkBG {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.7);
   width: 100vw;
   height: 100vh;
   z-index: 0;

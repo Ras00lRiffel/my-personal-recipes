@@ -7,6 +7,7 @@ interface RecipeProps {
 const Recipes = (recipes: RecipeProps) => {
   return (
     <div className="container grid grid-cols-3 gap-4 mt-6">
+      <p>You have 10 Recipes!</p>
       {recipes.recipes.map((recipe) => (
         <Recipe
           id={recipe.id}

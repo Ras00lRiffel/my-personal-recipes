@@ -1,4 +1,5 @@
 import logo from "../../assets/images/logo-v2.png";
+import Button from "../Button/Button";
 
 const Header = () => {
   return (
@@ -28,12 +29,7 @@ const Header = () => {
           </a>
         </div>
         <div className="basis-1/4 pr-4 pl-4 text-right">
-          <button
-            className="main-cta bg-orange-400 px-5 py-2 text-white rounded-lg hover:bg-orange-500 transition"
-            type="button"
-          >
-            Sign In
-          </button>
+          <Button text="Sign In" classes="main-cta" />
         </div>
       </div>
       <div className="header-desc text-center p-8 flex justify-center items-center">
