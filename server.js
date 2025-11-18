@@ -26,19 +26,20 @@ app.get('/', (req, res) => {
 
 //Adding a new recipe
 app.post('/add', (req, res) => {
-    const sql = 'INSERT INTO recipes (name, category, ingredients, method, image) VALUES (?)';
+    console.log(req.body);
+    const sql = 'INSERT INTO recipes (name, category, ingredients, instructions, image) VALUES (?)';
     const values = [
         req.body.name,
         req.body.category,
         req.body.ingredients,
-        req.body.method,
+        req.body.instructions,
         req.body.image
     ];
     db.query(sql, [values], (err, result) => {
         if (err) {
             return res.json(err);
         }
-        return res.json({ message: 'Game added!' });
+        return res.json({ message: 'Recipe added!', Result: result  });
     });
 });
 

@@ -19,18 +19,10 @@ const Add = () => {
     image: "",
   });
   const handleChange = (e: { target: { name: any; value: any } }) => {
-    setRecipe((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setRecipe((prev) => ({ ...prev, [name]: value }));
   };
 
-  //   const handleClick = async (e: { preventDefault: () => void }) => {
-  //     e.preventDefault();
-  //     try {
-  //       await axios.post("http://localhost:8800/games", game);
-  //       alert("Game has been added!! :).");
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
   const navigate = useNavigate();
   const handleClick = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -39,7 +31,7 @@ const Add = () => {
       await axios.post("http://localhost:8800/add", recipe);
       navigate("/");
     } catch (error) {
-      //console.log(error);
+      console.log(error);
     }
   };
   return (
@@ -49,6 +41,7 @@ const Add = () => {
       <div className="recipe-form">
         {labels.map((item, i) => {
           if (item.label === "Instructions" || item.label === "Ingredients") {
+            const name = item.label.toLowerCase();
             return (
               <div className="mt-4 sm:col-span-4" key={i}>
                 <label className="max-w-2xl m-auto block text-sm/6 font-medium text-gray-900">
@@ -57,7 +50,7 @@ const Add = () => {
                 <div className="mt-2">
                   <textarea
                     id={`field${i}`}
-                    name={`field${i}`}
+                    name={name}
                     placeholder={item.placeholder}
                     className="max-w-2xl m-auto block w-full rounded-md bg-white py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                     rows={4}
@@ -68,6 +61,8 @@ const Add = () => {
             );
           }
           if (item.label === "Category" && item.categories) {
+            const name = item.label.toLowerCase();
+
             return (
               <div className="mt-4 sm:col-span-4" key={i}>
                 <label className="max-w-2xl m-auto block text-sm/6 font-medium text-gray-900">
@@ -75,8 +70,7 @@ const Add = () => {
                 </label>
                 <div className="mt-2 max-w-2xl m-auto">
                   <select
-                    id={`field${i}`}
-                    name={`field${i}`}
+                    name={name}
                     className="block w-full rounded-md bg-white py-1.5 pr-3 pl-1 text-base text-gray-900 border border-gray-300 focus:outline-none sm:text-sm/6"
                     onChange={handleChange}
                   >
@@ -101,8 +95,8 @@ const Add = () => {
                   <input
                     type="file"
                     className="block border border-gray-300 rounded-md bg-white py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
-                    id="image_url"
-                    name="image_url"
+                    id="image"
+                    name="image"
                     onChange={handleChange}
                   />
                 </div>
@@ -119,9 +113,8 @@ const Add = () => {
                 <div className="mt-2">
                   <div className="max-w-2xl m-auto flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
                     <input
-                      id={`field${i}`}
                       type="text"
-                      name={`field${i}`}
+                      name="name"
                       placeholder={item.placeholder}
                       className="block min-w-0 grow bg-white py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                       onChange={handleChange}

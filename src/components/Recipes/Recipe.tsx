@@ -3,23 +3,16 @@ import Modal from "../../components/Modal/Modal";
 import { useState } from "react";
 
 interface RecipeProps {
-  id: number;
   name: string;
   image: string;
   ingredients: string[];
   instructions?: string;
 }
 
-const Recipe = ({
-  id,
-  name,
-  image,
-  ingredients,
-  instructions,
-}: RecipeProps) => {
+const Recipe = ({ name, image, ingredients, instructions }: RecipeProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div key={id} className="recipe-card">
+    <>
       <div className="recipe-header">
         <img src={images} alt={name} className="recipe-img" />
       </div>
@@ -49,7 +42,7 @@ const Recipe = ({
           instructions={instructions}
         />
       )}
-    </div>
+    </>
   );
 };
 
