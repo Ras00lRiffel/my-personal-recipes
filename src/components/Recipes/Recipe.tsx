@@ -1,4 +1,4 @@
-import images from "../../assets/images/butter-chicken.jpg";
+//import images from "../../assets/images/butter-chicken.jpg";
 import Modal from "../../components/Modal/Modal";
 import { useState } from "react";
 
@@ -7,6 +7,7 @@ interface RecipeProps {
   image: string;
   ingredients: string[];
   instructions?: string;
+  recipe_og?: string;
 }
 
 const Recipe = ({ name, image, ingredients, instructions }: RecipeProps) => {
@@ -14,7 +15,7 @@ const Recipe = ({ name, image, ingredients, instructions }: RecipeProps) => {
   return (
     <>
       <div className="recipe-header">
-        <img src={images} alt={name} className="recipe-img" />
+        <img src={image} alt={name} className="recipe-img" />
       </div>
       <div className="recipe-body p-4 text-center">
         <div className="recipe-text">

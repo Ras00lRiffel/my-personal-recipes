@@ -1,0 +1,6 @@
+Things I want to add/change
+    - I want to change the inputs for the instructions and ngredients to be a repeater input fields
+
+Things that I need to fix
+    - the styling for the model
+    - add the image to the model

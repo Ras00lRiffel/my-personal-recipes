@@ -25,7 +25,7 @@ const Modal = ({
             <RiCloseLine onClick={() => setIsOpen(false)} />
           </div>
           <div className="modalHeader">
-            <h3 className="heading">{name}</h3>
+            <h2 className="heading">{name}</h2>
           </div>
           <div className="modalContent">
             {ingredients} {instructions}

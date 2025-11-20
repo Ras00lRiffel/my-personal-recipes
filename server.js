@@ -1,6 +1,9 @@
 import express from 'express';
+import multer from "multer";
 import mysql from 'mysql';
 import cors from 'cors';
+import path from "path";
+
 
 const app = express();
 const db = mysql.createConnection({
@@ -41,6 +44,29 @@ app.post('/add', (req, res) => {
         }
         return res.json({ message: 'Recipe added!', Result: result  });
     });
+});
+
+// Uploading an image to my directory
+// Storing the image path in the database
+// Displaying the image in the frontend using the stored path
+
+// Configure storage for uploaded files
+const storage = multer.diskStorage({
+  destination: "./uploads/",
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage });
+
+app.post("/upload", upload.single("file"), (req, res) => {
+  if (!req.file) return res.status(400).send("No file uploaded.");
+
+  const fileUrl = `/uploads/${req.file.filename}`;
+  // TODO: Save fileUrl into your database here
+
+  res.json({ url: fileUrl });
 });
 
 

@@ -1,32 +1,33 @@
 import logo from "../../assets/images/logo-v2.png";
 import Button from "../Button/Button";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className="header">
       <div className="header-top flex flex-row items-center max-w-7xl m-auto">
         <div className="basis-1/4 pr-4 pl-4">
-          <img className="header-logo" src={logo} alt="My Recipes Logo" />
+          <Link to="/">
+            <img className="header-logo" src={logo} alt="My Recipes Logo" />
+          </Link>
         </div>
         <div className="basis-2/4 pr-4 pl-4 header-navbar">
-          <a
-            className="font-bold hover:bg-orange-500 hover:text-white py-1 px-4 rounded-lg"
-            href="#"
-          >
-            Home
-          </a>
-          <a
-            className="font-bold hover:bg-orange-500 hover:text-white py-1 px-4 rounded-lg"
-            href="#"
-          >
-            Recipes
-          </a>
-          <a
-            className="font-bold hover:bg-orange-500 hover:text-white py-1 px-4 rounded-lg"
-            href="#"
-          >
-            Gallery
-          </a>
+          <Link to="/">
+            <span className="font-bold hover:bg-orange-500 hover:text-white py-1 px-4 rounded-lg">
+              Home
+            </span>
+          </Link>
+          <Link to="/add">
+            <span className="font-bold hover:bg-orange-500 hover:text-white py-1 px-4 rounded-lg">
+              Recipes
+            </span>
+          </Link>
+
+          <Link to="/">
+            <span className="font-bold hover:bg-orange-500 hover:text-white py-1 px-4 rounded-lg">
+              Gallery
+            </span>
+          </Link>
         </div>
         <div className="basis-1/4 pr-4 pl-4 text-right">
           <Button text="Sign In" classes="main-cta" />

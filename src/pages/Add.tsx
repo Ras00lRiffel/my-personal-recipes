@@ -5,8 +5,9 @@ import Button from "../components/Button/Button";
 
 const labels = [
   { label: "Recipe Name", placeholder: "e.g. Chocolate Cake" },
-  { label: "Instructions", placeholder: "e.g. Mix, bake, cool..." },
   { label: "Ingredients", placeholder: "e.g. Flour, sugar, cocoa..." },
+  { label: "Instructions", placeholder: "e.g. Mix, bake, cool..." },
+  { label: "Recipe Author", placeholder: "e.g. Abuakr Solomon" },
   { label: "Category", categories: ["Breakfast", "Lunch", "Dinner", "Snack"] },
   { label: "Image" },
 ];
@@ -18,15 +19,45 @@ const Add = () => {
     category: "",
     image: "",
   });
-  const handleChange = (e: { target: { name: any; value: any } }) => {
+  const handleChange = async (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setRecipe((prev) => ({ ...prev, [name]: value }));
+    // For file input
+    if (
+      name === "image" &&
+      "files" in e.target &&
+      e.target.files &&
+      e.target.files[0]
+    ) {
+      const selectedFile = e.target.files[0];
+
+      try {
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+
+        const res = await fetch("http://localhost:8800/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await res.json();
+        console.log("File uploaded:", data.url);
+
+        setRecipe((prev) => ({ ...prev, image: data.url }));
+      } catch (error) {
+        console.error("File upload failed", error);
+      }
+    } else {
+      setRecipe((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const navigate = useNavigate();
   const handleClick = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log();
     try {
       await axios.post("http://localhost:8800/add", recipe);
       navigate("/");
@@ -40,7 +71,7 @@ const Add = () => {
 
       <div className="recipe-form">
         {labels.map((item, i) => {
-          if (item.label === "Instructions" || item.label === "Ingredients") {
+          if (item.label === "Ingredients" || item.label === "Instructions") {
             const name = item.label.toLowerCase();
             return (
               <div className="mt-4 sm:col-span-4" key={i}>
@@ -111,7 +142,7 @@ const Add = () => {
                   {item.label}
                 </label>
                 <div className="mt-2">
-                  <div className="max-w-2xl m-auto flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+                  <div className="max-w-2xl m-auto flex items-center rounded-md bg-white pl-1 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
                     <input
                       type="text"
                       name="name"
