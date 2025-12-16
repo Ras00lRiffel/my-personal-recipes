@@ -10,7 +10,13 @@ interface RecipeProps {
   recipe_og?: string;
 }
 
-const Recipe = ({ name, image, ingredients, instructions }: RecipeProps) => {
+const Recipe = ({
+  name,
+  image,
+  ingredients,
+  instructions,
+  recipe_og,
+}: RecipeProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -20,7 +26,7 @@ const Recipe = ({ name, image, ingredients, instructions }: RecipeProps) => {
       <div className="recipe-body p-4 text-center">
         <div className="recipe-text">
           <h3>{name}</h3>
-          <span className="cat-text mt-2">Abubakr Solomon's Recipes</span>
+          <span className="cat-text mt-2">{recipe_og}'s Recipe</span>
         </div>
         <div className="recipe-footer">
           <a href="#">

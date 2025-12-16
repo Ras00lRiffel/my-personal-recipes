@@ -5,9 +5,11 @@ interface RecipeProps {
 }
 
 const Recipes = (recipes: RecipeProps) => {
+  // Calculate the number of recipes
+  const recipeCount = recipes.recipes.length;
   return (
     <>
-      <p>You have 10 Recipes!</p>
+      <p>You have {recipeCount} Recipes!</p>
       <div className="container grid grid-cols-3 gap-4 mt-6">
         {recipes.recipes.map((recipe) => (
           <div className="recipe-card" key={recipe.id} id={recipe.id}>
@@ -16,6 +18,7 @@ const Recipes = (recipes: RecipeProps) => {
               image={recipe.image}
               ingredients={recipe.ingredients}
               instructions={recipe.instructions}
+              recipe_og={recipe.recipe_og}
             />
           </div>
         ))}
