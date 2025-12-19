@@ -1,58 +1,66 @@
-import express from 'express';
+import express from "express";
 import multer from "multer";
-import mysql from 'mysql';
-import cors from 'cors';
+import mysql from "mysql2";
+import cors from "cors";
 import path from "path";
+import dotenv from "dotenv";
 
+dotenv.config();
 
 const app = express();
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'recipes'
-});
 
+// Middleware
 app.use(express.json());
 app.use(cors());
+app.use("/uploads", express.static("uploads"));
 
-//Getting all the recipes
-app.get('/', (req, res) => {
-    const sql = 'SELECT * FROM recipes';
-    db.query(sql, (err, results) => {
-        if (err) {
-            return res.json(err);
-        }
-        return res.json(results);
-    });
+// MySQL connection
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
 });
 
-//Adding a new recipe
-app.post('/add', (req, res) => {
-    console.log(req.body);
-    const sql = 'INSERT INTO recipes (name, category, ingredients, instructions, image) VALUES (?)';
-    const values = [
-        req.body.name,
-        req.body.category,
-        req.body.ingredients,
-        req.body.instructions,
-        req.body.image
-    ];
-    db.query(sql, [values], (err, result) => {
-        if (err) {
-            return res.json(err);
-        }
-        return res.json({ message: 'Recipe added!', Result: result  });
-    });
+db.connect((err) => {
+  if (err) {
+    console.error("❌ MySQL connection failed:", err);
+    return;
+  }
+  console.log("✅ Connected to MySQL");
 });
 
-// Uploading an image to my directory
-// Storing the image path in the database
-// Displaying the image in the frontend using the stored path
+// Get all recipes
+app.get("/api/recipes", (req, res) => {
+  const sql = "SELECT * FROM recipes";
+  db.query(sql, (err, results) => {
+    if (err) return res.status(500).json(err);
+    res.json(results);
+  });
+});
 
-// Configure storage for uploaded files
+// Add recipe
+app.post("/api/recipes", (req, res) => {
+  const sql =
+    "INSERT INTO recipes (name, category, ingredients, instructions, image) VALUES (?)";
+
+  const values = [
+    req.body.name,
+    req.body.category,
+    req.body.ingredients,
+    req.body.instructions,
+    req.body.image,
+  ];
+
+  db.query(sql, [values], (err, result) => {
+    if (err) return res.status(500).json(err);
+    res.json({ message: "Recipe added!", result });
+  });
+});
+
+// Multer storage
 const storage = multer.diskStorage({
-  destination: "./uploads/",
+  destination: "uploads/",
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
   },
@@ -60,16 +68,15 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-app.post("/upload", upload.single("file"), (req, res) => {
-  if (!req.file) return res.status(400).send("No file uploaded.");
+// Upload route
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  if (!req.file) return res.status(400).json("No file uploaded");
 
   const fileUrl = `/uploads/${req.file.filename}`;
-  // TODO: Save fileUrl into your database here
-
   res.json({ url: fileUrl });
 });
 
-
-app.listen(8800, () => {
-  console.log('Server is running on port 8800!');
+// Start server
+app.listen(process.env.PORT, () => {
+  console.log(`🚀 Server running on port ${process.env.PORT}`);
 });
