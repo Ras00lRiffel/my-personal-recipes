@@ -131,6 +131,11 @@
   color: #ff6347;
 }
 
+.repeater-inputs .repeater-input-rm-btn {
+  background-color: #c06a5a;
+  color: White;
+}
+
 :root {
   /* Base scaling */
   --font-size-base: 1rem; /* 16px */

@@ -4,17 +4,22 @@ import mysql from "mysql2";
 import cors from "cors";
 import path from "path";
 import dotenv from "dotenv";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
+const PORT = process.env.PORT || 8800;
 
 // Middleware
 app.use(express.json());
 app.use(cors());
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// MySQL connection
+// --- MySQL connection ---
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -30,6 +35,8 @@ db.connect((err) => {
   console.log("✅ Connected to MySQL");
 });
 
+// --- API routes ---
+
 // Get all recipes
 app.get("/api/recipes", (req, res) => {
   const sql = "SELECT * FROM recipes";
@@ -43,7 +50,6 @@ app.get("/api/recipes", (req, res) => {
 app.post("/api/recipes", (req, res) => {
   const sql =
     "INSERT INTO recipes (name, category, ingredients, instructions, image) VALUES (?)";
-
   const values = [
     req.body.name,
     req.body.category,
@@ -51,32 +57,36 @@ app.post("/api/recipes", (req, res) => {
     req.body.instructions,
     req.body.image,
   ];
-
   db.query(sql, [values], (err, result) => {
     if (err) return res.status(500).json(err);
     res.json({ message: "Recipe added!", result });
   });
 });
 
-// Multer storage
+// Upload route (multer)
 const storage = multer.diskStorage({
-  destination: "uploads/",
+  destination: path.join(__dirname, "uploads"),
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
   },
 });
-
 const upload = multer({ storage });
-
-// Upload route
 app.post("/api/upload", upload.single("file"), (req, res) => {
   if (!req.file) return res.status(400).json("No file uploaded");
-
   const fileUrl = `/uploads/${req.file.filename}`;
   res.json({ url: fileUrl });
 });
 
-// Start server
-app.listen(process.env.PORT, () => {
-  console.log(`🚀 Server running on port ${process.env.PORT}`);
+// --- Serve frontend ---
+const frontendPath = path.join(__dirname, "../recipes-frontend/dist");
+app.use(express.static(frontendPath));
+
+// Catch-all route to serve index.html for frontend routing
+app.get('/:catchall', (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
+
+// --- Start server ---
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });

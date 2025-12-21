@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button/Button";
+import Input from "../components/Inputs/Input";
 
 const labels = [
   { label: "Recipe Name", placeholder: "e.g. Chocolate Cake" },
@@ -14,8 +15,8 @@ const labels = [
 const Add = () => {
   const [recipe, setRecipe] = useState({
     name: "",
-    instructions: "",
-    ingredients: "",
+    instructions: [],
+    ingredients: [],
     category: "",
     image: "",
   });
@@ -38,7 +39,7 @@ const Add = () => {
         const formData = new FormData();
         formData.append("file", selectedFile);
 
-        const res = await fetch("http://localhost:8800/upload", {
+        const res = await fetch("http://localhost:8800/api/upload", {
           method: "POST",
           body: formData,
         });
@@ -51,6 +52,7 @@ const Add = () => {
         console.error("File upload failed", error);
       }
     } else {
+      debugger;
       setRecipe((prev) => ({ ...prev, [name]: value }));
     }
   };
@@ -59,7 +61,9 @@ const Add = () => {
   const handleClick = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8800/add", recipe);
+      console.log(recipe);
+      debugger;
+      await axios.post("http://localhost:8800/api/recipes", recipe);
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -78,16 +82,14 @@ const Add = () => {
                 <label className="max-w-2xl m-auto block text-sm/6 font-medium text-gray-900">
                   {item.label}
                 </label>
-                <div className="mt-2">
-                  <textarea
-                    id={`field${i}`}
-                    name={name}
-                    placeholder={item.placeholder}
-                    className="max-w-2xl m-auto block w-full rounded-md bg-white py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
-                    rows={4}
-                    onChange={handleChange}
-                  />
-                </div>
+                <Input
+                  onChange={(vals) =>
+                    setRecipe((prev) => ({
+                      ...prev,
+                      name: vals.join(". "),
+                    }))
+                  }
+                />
               </div>
             );
           }

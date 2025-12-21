@@ -4,3 +4,4 @@ Things I want to add/change
 Things that I need to fix
     - the styling for the model
     - add the image to the model
+    - the instruction and ingredients isnt setting. the arrays arent being set from the inputs
