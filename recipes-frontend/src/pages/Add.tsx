@@ -76,7 +76,7 @@ const Add = () => {
       <div className="recipe-form">
         {labels.map((item, i) => {
           if (item.label === "Ingredients" || item.label === "Instructions") {
-            const name = item.label.toLowerCase();
+            const names = item.label.toLowerCase();
             return (
               <div className="mt-4 sm:col-span-4" key={i}>
                 <label className="max-w-2xl m-auto block text-sm/6 font-medium text-gray-900">
@@ -86,7 +86,7 @@ const Add = () => {
                   onChange={(vals) =>
                     setRecipe((prev) => ({
                       ...prev,
-                      name: vals.join(". "),
+                      [names]: vals.join(". "),
                     }))
                   }
                 />
