@@ -1,4 +1,5 @@
 import logo from "../../assets/logo-v2.png";
+import headerBg from "../../assets/header-bg.jpeg";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 
@@ -33,7 +34,10 @@ const Header = () => {
           <Button text="Sign In" classes="main-cta" />
         </div>
       </div>
-      <div className="header-desc text-center p-8 flex justify-center items-center">
+      <div
+        className="header-desc text-center p-8 flex justify-center items-center"
+        style={{ backgroundImage: `url(${headerBg})` }}
+      >
         <span className="header-text relative z-10">
           <h1 className="text-orange-400">Explore My Recipes</h1>
           <p className="text-orange-400">
