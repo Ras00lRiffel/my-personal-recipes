@@ -49,14 +49,21 @@ app.get("/api/recipes", (req, res) => {
 // Add recipe
 app.post("/api/recipes", (req, res) => {
   const sql =
-    "INSERT INTO recipes (name, category, ingredients, instructions, image) VALUES (?)";
+    "INSERT INTO recipes (name, category, ingredients, instructions, image, prep_time, cook_time, serving_size, author) VALUES (?,?,?,?,?,?,?,?,?,?)";
+
   const values = [
     req.body.name,
     req.body.category,
-    req.body.ingredients,
-    req.body.instructions,
+    JSON.stringify(req.body.ingredients),
+    JSON.stringify(req.body.instructions),
     req.body.image,
+    req.body.prep_time,
+    req.body.cook_time,
+    req.body.serving_size,
+    req.body.author,
   ];
+  console.log("Received recipe data:", values);
+  debugger;  
   db.query(sql, [values], (err, result) => {
     if (err) return res.status(500).json(err);
     res.json({ message: "Recipe added!", result });

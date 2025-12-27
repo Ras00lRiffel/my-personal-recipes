@@ -18,7 +18,7 @@ const Recipes = (recipes: RecipeProps) => {
               image={recipe.image}
               ingredients={recipe.ingredients}
               instructions={recipe.instructions}
-              recipe_og={recipe.recipe_og}
+              author={recipe.author}
             />
           </div>
         ))}

@@ -7,7 +7,7 @@ interface RecipeProps {
   image: string;
   ingredients: string[];
   instructions?: string;
-  recipe_og?: string;
+  author?: string;
 }
 
 const Recipe = ({
@@ -15,18 +15,22 @@ const Recipe = ({
   image,
   ingredients,
   instructions,
-  recipe_og,
+  author,
 }: RecipeProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <div className="recipe-header">
-        <img src={image} alt={name} className="recipe-img" />
+        <img
+          src={"http://localhost:8800" + image}
+          alt={name}
+          className="recipe-img"
+        />
       </div>
       <div className="recipe-body p-4 text-center">
         <div className="recipe-text">
           <h3>{name}</h3>
-          <span className="cat-text mt-2">{recipe_og}'s Recipe</span>
+          <span className="cat-text mt-2">{author}'s Recipe</span>
         </div>
         <div className="recipe-footer">
           <a href="#">
