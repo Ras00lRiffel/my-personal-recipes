@@ -19,6 +19,9 @@ const Recipes = (recipes: RecipeProps) => {
               ingredients={recipe.ingredients}
               instructions={recipe.instructions}
               author={recipe.author}
+              cookTime={recipe.cookTime}
+              prepTime={recipe.prepTime}
+              servings={recipe.servings}
             />
           </div>
         ))}

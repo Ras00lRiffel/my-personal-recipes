@@ -103,7 +103,7 @@ const Add = () => {
     try {
       console.log("Submitting recipe:", recipe);
       await axios.post("http://localhost:8800/api/recipes", recipe);
-      navigate("/");
+      //navigate("/");
     } catch (error) {
       console.log(error);
     }

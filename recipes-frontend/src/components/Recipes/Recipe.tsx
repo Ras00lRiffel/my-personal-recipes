@@ -6,8 +6,11 @@ interface RecipeProps {
   name: string;
   image: string;
   ingredients: string[];
-  instructions?: string;
+  instructions?: string[];
   author?: string;
+  cookTime?: string;
+  prepTime?: string;
+  servings?: string;
 }
 
 const Recipe = ({
@@ -16,6 +19,9 @@ const Recipe = ({
   ingredients,
   instructions,
   author,
+  cookTime,
+  prepTime,
+  servings,
 }: RecipeProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -51,6 +57,9 @@ const Recipe = ({
           image={image}
           ingredients={ingredients}
           instructions={instructions}
+          cookTime={cookTime}
+          prepTime={prepTime}
+          servings={servings}
         />
       )}
     </>

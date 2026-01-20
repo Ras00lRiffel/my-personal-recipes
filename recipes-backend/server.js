@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 8800;
 
 // Middleware
 app.use(express.json());
+
 app.use(cors());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -48,8 +49,9 @@ app.get("/api/recipes", (req, res) => {
 
 // Add recipe
 app.post("/api/recipes", (req, res) => {
-  const sql =
-    "INSERT INTO recipes (name, category, ingredients, instructions, image, prep_time, cook_time, serving_size, author) VALUES (?,?,?,?,?,?,?,?,?,?)";
+  console.log("HEADERS:", req.headers["content-type"]);
+  console.log("BODY:", req.body);
+  const sql = "INSERT INTO recipes (name, category, ingredients, instructions, image, author, prepTime, cookTime, servings) VALUES (?)";
 
   const values = [
     req.body.name,
@@ -57,13 +59,12 @@ app.post("/api/recipes", (req, res) => {
     JSON.stringify(req.body.ingredients),
     JSON.stringify(req.body.instructions),
     req.body.image,
-    req.body.prep_time,
-    req.body.cook_time,
-    req.body.serving_size,
     req.body.author,
+    req.body.prepTime,
+    req.body.cookTime,
+    req.body.servings,
   ];
   console.log("Received recipe data:", values);
-  debugger;  
   db.query(sql, [values], (err, result) => {
     if (err) return res.status(500).json(err);
     res.json({ message: "Recipe added!", result });
