@@ -70,14 +70,14 @@ const Add = () => {
   const handleChange = async (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value, files } = e.target as any;
     if (name === "image" && files && files[0]) {
       const formData = new FormData();
       formData.append("file", files[0]);
       try {
-        const res = await fetch("http://localhost:8800/api/upload", {
+        const res = await fetch("/api/upload", {
           method: "POST",
           body: formData,
         });
@@ -102,7 +102,7 @@ const Add = () => {
     e.preventDefault();
     try {
       console.log("Submitting recipe:", recipe);
-      await axios.post("http://localhost:8800/api/recipes", recipe);
+      await axios.post("/api/recipes", recipe);
       navigate("/");
     } catch (error) {
       console.log(error);

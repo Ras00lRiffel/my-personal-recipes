@@ -14,7 +14,7 @@ const App = () => {
     // Fetch recipes from the server when the component mounts
     const fetchRecipes = async () => {
       try {
-        const response = await axios.get("http://localhost:8800/api/recipes");
+        const response = await axios.get("/api/recipes");
         setRecipes(response.data);
       } catch (error) {
         console.error("Error fetching recipes:", error);

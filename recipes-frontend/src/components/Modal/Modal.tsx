@@ -69,7 +69,7 @@ const Modal = ({
               </div>
             </div>
             <div className="recipe-image">
-              <img src={"http://localhost:8800" + image} alt={name} />
+              <img src={image} alt={name} />
             </div>
           </div>
         </div>

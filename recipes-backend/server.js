@@ -49,8 +49,7 @@ app.get("/api/recipes", (req, res) => {
 
 // Add recipe
 app.post("/api/recipes", (req, res) => {
-  console.log("HEADERS:", req.headers["content-type"]);
-  console.log("BODY:", req.body);
+  const baseUrl = `${req.protocol}://${req.get("host")}`;
   const sql = "INSERT INTO recipes (name, category, ingredients, instructions, image, author, prepTime, cookTime, servings) VALUES (?)";
 
   const values = [
@@ -58,7 +57,7 @@ app.post("/api/recipes", (req, res) => {
     req.body.category,
     JSON.stringify(req.body.ingredients),
     JSON.stringify(req.body.instructions),
-    req.body.image,
+    baseUrl + req.body.image,
     req.body.author,
     req.body.prepTime,
     req.body.cookTime,

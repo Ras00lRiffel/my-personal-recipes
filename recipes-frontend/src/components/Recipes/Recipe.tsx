@@ -27,11 +27,7 @@ const Recipe = ({
   return (
     <>
       <div className="recipe-header">
-        <img
-          src={"http://localhost:8800" + image}
-          alt={name}
-          className="recipe-img"
-        />
+        <img src={image} alt={name} className="recipe-img" />
       </div>
       <div className="recipe-body p-4 text-center">
         <div className="recipe-text">
