@@ -1,6 +1,7 @@
 import "../../assets/styles/styles.css";
 import { RiCloseLine } from "react-icons/ri";
-import { FaRegClock } from "react-icons/fa6";
+import { IoIosClock } from "react-icons/io";
+import { GiForkKnifeSpoon } from "react-icons/gi";
 
 interface ModalProps {
   setIsOpen: (isOpen: boolean) => void;
@@ -34,20 +35,30 @@ const Modal = ({
           <div className="modalHeader">
             <h2 className="heading">{name}</h2>
             <hr />
-            <div className="recipes-info grid grid-cols-3 gap-4 mt-2 text-center">
-              <div className="flex items-center justify-center gap-2 grid-cols-2">
-                <FaRegClock />
-                <h4>PREP TIME: {prepTime}</h4>
+            <div className="recipes-info grid grid-cols-3 gap-4 mt-2 ">
+              <div className="flex items-center justify-space-between gap-2 grid-cols-2">
+                <IoIosClock size={30} className="icon" />
+                <h4>
+                  Prep Time: <br />
+                  {prepTime}
+                </h4>
               </div>
               <div className="flex items-center justify-center gap-2 grid-cols-2">
-                <FaRegClock />
-                <h4>COOK TIME: {cookTime}</h4>
+                <IoIosClock size={30} className="icon" />
+                <h4>
+                  Cook Time: <br />
+                  {cookTime}
+                </h4>
               </div>
               <div className="flex items-center justify-center gap-2 grid-cols-2">
-                <FaRegClock />
-                <h4>SERVING SIZE: {servings}</h4>
+                <GiForkKnifeSpoon size={30} className="icon" />
+                <h4>
+                  Serving Size: <br />
+                  {servings}
+                </h4>
               </div>
             </div>
+            <hr />
           </div>
           <div className="modalContent grid grid-cols-2 gap-4 mt-4">
             <div className="">
@@ -59,18 +70,18 @@ const Modal = ({
                   ))}
                 </ul>
               </div>
-              <div>
-                <h4>Instructions</h4>
-                <ul>
-                  {instructions?.map((instruction, index) => (
-                    <li key={index}>{instruction}</li>
-                  ))}
-                </ul>
-              </div>
             </div>
             <div className="recipe-image">
               <img src={image} alt={name} />
             </div>
+          </div>
+          <div>
+            <h4>Instructions</h4>
+            <ul>
+              {instructions?.map((instruction, index) => (
+                <li key={index}>{instruction}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

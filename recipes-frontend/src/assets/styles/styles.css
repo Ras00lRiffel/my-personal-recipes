@@ -82,13 +82,12 @@
   max-width: 100%;
   width: 1000px;
   padding: 20px;
-  background: white;
-  color: white;
+  background: #fff3e1;
   z-index: 10;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 }
 .centered .modal .modalHeader {
-  background: white;
+  background: #fff3e1;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
 }
@@ -100,8 +99,10 @@
   font-size: 18px;
   text-align: center;
 }
+.centered .modal .modalHeader h4 {
+  font-weight: 400;
+}
 .centered .modal .modalContent {
-  padding: 10px;
   font-size: 14px;
   color: #2c3e50;
 }
