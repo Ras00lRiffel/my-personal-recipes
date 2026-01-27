@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header/Header";
 import Recipes from "./components/Recipes/Recipes";
 import Add from "./pages/Add";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 const App = () => {
+  const location = useLocation();
+
   // Variable to set/update the recipes
   const [recipes, setRecipes] = useState<any[]>([]);
 
@@ -21,20 +23,18 @@ const App = () => {
       }
     };
     fetchRecipes();
-  }, []);
+  }, [location.key]);
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header />
-        <div className="max-w-7xl m-auto p-4 body-content">
-          <Routes>
-            <Route path="/" element={<Recipes recipes={recipes} />} />
-            <Route path="/add" element={<Add />} />
-            {/* <Route path="/update/:id" element={} /> */}
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <Header />
+      <div className="max-w-7xl m-auto p-4 body-content">
+        <Routes>
+          <Route path="/" element={<Recipes recipes={recipes} />} />
+          <Route path="/add" element={<Add />} />
+          {/* <Route path="/update/:id" element={} /> */}
+        </Routes>
+      </div>
     </div>
   );
 };
