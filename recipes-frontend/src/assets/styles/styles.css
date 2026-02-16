@@ -79,8 +79,7 @@
   transform: translate(-50%, -50%);
 }
 .centered .modal {
-  max-width: 100%;
-  width: 1000px;
+  width: 80vw;
   padding: 20px;
   background: #fff3e1;
   z-index: 10;
@@ -96,7 +95,6 @@
   padding: 10px;
   color: #2c3e50;
   font-weight: 500;
-  font-size: 18px;
   text-align: center;
 }
 .centered .modal .modalHeader h4 {
@@ -183,7 +181,14 @@ h3 {
 } /* ~24px */
 h4 {
   font-size: calc(var(--font-size-base) * 1.25);
-} /* ~20px */
+}
+@media screen and (max-width: 767px) {
+  h4 {
+    font-size: calc(var(--font-size-base) * 1);
+  }
+}
+
+/* ~20px */
 p {
   font-size: var(--font-size-base);
 } /* 16px */

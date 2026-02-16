@@ -5,8 +5,8 @@ import { useState } from "react";
 interface RecipeProps {
   name: string;
   image: string;
-  ingredients: string[];
-  instructions?: string[];
+  ingredients: [];
+  instructions?: [];
   author?: string;
   cookTime?: string;
   prepTime?: string;

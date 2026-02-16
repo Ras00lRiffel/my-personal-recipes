@@ -2,17 +2,33 @@ import logo from "../../assets/logo-v2.png";
 import headerBg from "../../assets/header-bg.jpeg";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="header">
       <div className="header-top flex flex-row items-center max-w-7xl m-auto">
-        <div className="basis-1/4 pr-4 pl-4">
+        <div className="md:basis-1/4 pr-4 pl-4 flex items-center justify-between w-full">
           <Link to="/">
             <img className="header-logo" src={logo} alt="My Recipes Logo" />
           </Link>
+          {/* Burger menu icon for mobile */}
+          <button
+            className="md:hidden ml-4 p-2 rounded hover:bg-orange-200"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg width="24" height="24" fill="currentColor">
+              <rect y="4" width="24" height="2" rx="1" />
+              <rect y="11" width="24" height="2" rx="1" />
+              <rect y="18" width="24" height="2" rx="1" />
+            </svg>
+          </button>
         </div>
-        <div className="basis-2/4 pr-4 pl-4 header-navbar">
+        {/* Desktop navbar */}
+        <div className="md:basis-2/4 pr-4 pl-4 header-navbar hidden md:flex">
           <Link to="/">
             <span className="font-bold hover:bg-orange-500 hover:text-white py-1 px-4 rounded-lg">
               Home
@@ -30,10 +46,33 @@ const Header = () => {
             </span>
           </Link>
         </div>
-        <div className="basis-1/4 pr-4 pl-4 text-right">
+        <div className="md:basis-1/4 pr-4 pl-4 text-right hidden md:block">
           <Button text="Sign In" classes="main-cta" />
         </div>
       </div>
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-white shadow-lg absolute left-0 right-0 top-16 z-50">
+          <div className="flex flex-col items-center py-4">
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              <span className="font-bold hover:bg-orange-500 hover:text-white py-2 px-6 rounded-lg block">
+                Home
+              </span>
+            </Link>
+            <Link to="/add" onClick={() => setMenuOpen(false)}>
+              <span className="font-bold hover:bg-orange-500 hover:text-white py-2 px-6 rounded-lg block">
+                Recipes
+              </span>
+            </Link>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              <span className="font-bold hover:bg-orange-500 hover:text-white py-2 px-6 rounded-lg block">
+                Gallery
+              </span>
+            </Link>
+            <Button text="Sign In" classes="main-cta mt-4" />
+          </div>
+        </div>
+      )}
       <div
         className="header-desc text-center p-8 flex justify-center items-center"
         style={{ backgroundImage: `url(${headerBg})` }}

@@ -10,7 +10,7 @@ const Recipes = (recipes: RecipeProps) => {
   return (
     <>
       <p>You have {recipeCount} Recipes!</p>
-      <div className="container grid grid-cols-3 gap-4 mt-6">
+      <div className="container grid md:grid-cols-3 gap-4 mt-6">
         {recipes.recipes.map((recipe) => (
           <div className="recipe-card" key={recipe.id} id={recipe.id}>
             <Recipe

@@ -7,8 +7,8 @@ interface ModalProps {
   setIsOpen: (isOpen: boolean) => void;
   name: string;
   image: string;
-  ingredients?: string[];
-  instructions?: string[];
+  ingredients?: [];
+  instructions?: [];
   cookTime?: string;
   prepTime?: string;
   servings?: string;
@@ -24,6 +24,15 @@ const Modal = ({
   prepTime,
   servings,
 }: ModalProps) => {
+  console.log("Modal props:", {
+    name,
+    image,
+    ingredients,
+    instructions,
+    cookTime,
+    prepTime,
+    servings,
+  });
   return (
     <>
       <div className="darkBG" onClick={() => setIsOpen(false)} />

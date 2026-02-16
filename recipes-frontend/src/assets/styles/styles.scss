@@ -56,6 +56,9 @@ h3 {
 } /* ~24px */
 h4 {
   font-size: calc(var(--font-size-base) * 1.25);
+  @media screen and (max-width: 767px) {
+    font-size: calc(var(--font-size-base) * 1);
+  }
 } /* ~20px */
 p {
   font-size: var(--font-size-base);
