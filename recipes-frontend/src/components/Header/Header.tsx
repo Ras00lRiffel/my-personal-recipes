@@ -28,20 +28,20 @@ const Header = () => {
           </button>
         </div>
         {/* Desktop navbar */}
-        <div className="md:basis-2/4 pr-4 pl-4 header-navbar hidden md:flex">
+        <div className="md:basis-2/4 pr-4 pl-4 header-navbar hidden md:flex justify-center gap-6">
           <Link to="/">
-            <span className="font-bold hover:bg-orange-500 hover:text-white py-1 px-4 rounded-lg">
+            <span className="font-bold md:hover:bg-orange-500 md:hover:text-white py-1 px-4 rounded-lg">
               Home
             </span>
           </Link>
           <Link to="/add">
-            <span className="font-bold hover:bg-orange-500 hover:text-white py-1 px-4 rounded-lg">
+            <span className="font-bold md:hover:bg-orange-500 md:hover:text-white py-1 px-4 rounded-lg">
               Recipes
             </span>
           </Link>
 
-          <Link to="/">
-            <span className="font-bold hover:bg-orange-500 hover:text-white py-1 px-4 rounded-lg">
+          <Link to="/gallery">
+            <span className="font-bold md:hover:bg-orange-500 md:hover:text-white py-1 px-4 rounded-lg">
               Gallery
             </span>
           </Link>
@@ -53,19 +53,31 @@ const Header = () => {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-white shadow-lg absolute left-0 right-0 top-16 z-50">
-          <div className="flex flex-col items-center py-4">
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              <span className="font-bold hover:bg-orange-500 hover:text-white py-2 px-6 rounded-lg block">
+          <div className="flex flex-col items-center pb-4">
+            <Link
+              to="/"
+              onClick={() => setMenuOpen(false)}
+              className="w-full text-center hover:bg-orange-500 hover:text-white"
+            >
+              <span className="font-bold md:hover:bg-orange-500 md:hover:text-white py-2 px-6 rounded-lg block">
                 Home
               </span>
             </Link>
-            <Link to="/add" onClick={() => setMenuOpen(false)}>
-              <span className="font-bold hover:bg-orange-500 hover:text-white py-2 px-6 rounded-lg block">
+            <Link
+              to="/add"
+              onClick={() => setMenuOpen(false)}
+              className="w-full text-center hover:bg-orange-500 hover:text-white"
+            >
+              <span className="font-bold md:hover:bg-orange-500 md:hover:text-white py-2 px-6 rounded-lg block">
                 Recipes
               </span>
             </Link>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              <span className="font-bold hover:bg-orange-500 hover:text-white py-2 px-6 rounded-lg block">
+            <Link
+              to="/gallery"
+              onClick={() => setMenuOpen(false)}
+              className="w-full text-center hover:bg-orange-500 hover:text-white"
+            >
+              <span className="font-bold md:hover:bg-orange-500 md:hover:text-white py-2 px-6 rounded-lg block">
                 Gallery
               </span>
             </Link>

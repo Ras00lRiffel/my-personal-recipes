@@ -1,10 +1,11 @@
-import axios from "axios";
 import "./assets/styles/styles.css";
+import axios from "axios";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "./components/Header/Header";
 import Recipes from "./components/Recipes/Recipes";
 import Add from "./pages/Add";
-import { Route, Routes, useLocation } from "react-router-dom";
+import Gallery from "./pages/Gallery";
 
 const App = () => {
   const location = useLocation();
@@ -32,6 +33,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Recipes recipes={recipes} />} />
           <Route path="/add" element={<Add />} />
+          <Route path="/gallery" element={<Gallery />} />
           {/* <Route path="/update/:id" element={} /> */}
         </Routes>
       </div>
