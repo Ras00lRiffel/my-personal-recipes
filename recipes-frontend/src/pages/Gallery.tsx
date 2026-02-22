@@ -1,4 +1,4 @@
-import "../assets/styles/Pages/gallery.css";
+import "../assets/styles/styles.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
