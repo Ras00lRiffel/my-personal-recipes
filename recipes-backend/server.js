@@ -51,13 +51,14 @@ app.get("/api/recipes", (req, res) => {
 app.post("/api/recipes", (req, res) => {
   const baseUrl = `${req.protocol}://${req.get("host")}`;
   const sql = "INSERT INTO recipes (name, category, ingredients, instructions, image, author, prepTime, cookTime, servings) VALUES (?)";
+  const imageUrl = req.body.image ? baseUrl + req.body.image : null;
 
   const values = [
     req.body.name,
     req.body.category,
     JSON.stringify(req.body.ingredients),
     JSON.stringify(req.body.instructions),
-    baseUrl + req.body.image,
+    imageUrl,
     req.body.author,
     req.body.prepTime,
     req.body.cookTime,

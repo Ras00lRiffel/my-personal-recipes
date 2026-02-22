@@ -25,19 +25,21 @@ const Gallery = () => {
       </div>
       <div className="gallery">
         {galleryImages.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {galleryImages.map((image: any) => (
-              <div className="flip-box">
-                <div key={image.id} className="gallery-item flip-box-inner">
-                  <div className="flip-box-front">
-                    <img src={image.image} alt={image.name} />
-                  </div>
-                  <div className="flip-box-back">
-                    <h2>{image.name}</h2>
+          <div className="flex flex-col items-center sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {galleryImages.map((image: any) =>
+              image.image ? (
+                <div className="flip-box" key={image.id}>
+                  <div className="gallery-item flip-box-inner">
+                    <div className="flip-box-front">
+                      <img src={image.image} alt={image.name} />
+                    </div>
+                    <div className="flip-box-back">
+                      <h2>{image.name}</h2>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ) : null,
+            )}
           </div>
         ) : (
           <p className="text-center">No images found.</p>
