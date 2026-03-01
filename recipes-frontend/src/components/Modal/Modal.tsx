@@ -1,4 +1,5 @@
 import "../../assets/styles/styles.css";
+import dImage from "../../assets/default-image.avif";
 import { RiCloseLine } from "react-icons/ri";
 import { IoIosClock } from "react-icons/io";
 import { GiForkKnifeSpoon } from "react-icons/gi";
@@ -33,6 +34,8 @@ const Modal = ({
     prepTime,
     servings,
   });
+  const defaultImage = dImage; // Fallback image if no image is provided
+
   return (
     <>
       <div className="darkBG" onClick={() => setIsOpen(false)} />
@@ -81,7 +84,7 @@ const Modal = ({
               </div>
             </div>
             <div className="recipe-image">
-              <img src={image} alt={name} />
+              <img src={image || defaultImage} alt={name} />
             </div>
           </div>
           <div>
