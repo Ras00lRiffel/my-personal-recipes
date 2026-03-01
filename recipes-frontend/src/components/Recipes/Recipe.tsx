@@ -2,8 +2,10 @@ import dImage from "../../assets/default-image.avif";
 import Modal from "../../components/Modal/Modal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+// import axios from "axios";
 
 interface RecipeProps {
+  id: number;
   name: string;
   image: string;
   ingredients: [];
@@ -15,6 +17,7 @@ interface RecipeProps {
 }
 
 const Recipe = ({
+  id,
   name,
   image,
   ingredients,
@@ -25,6 +28,7 @@ const Recipe = ({
   servings,
 }: RecipeProps) => {
   const [isOpen, setIsOpen] = useState(false);
+
   const defaultImage = dImage; // Fallback image if no image is provided
   return (
     <>
@@ -46,11 +50,11 @@ const Recipe = ({
               View Recipe
             </button>
           </a>
-          <Link to={`/edit-recipe/${name}`}>
+          <Link to={`/edit/${id}`}>
             <button
               type="button"
               className="w-full p-2 mt-4 bg-orange-400 text-white rounded-lg hover:bg-orange-500 transition"
-              //onClick={}
+              // onClick={handleEdit}
             >
               Edit Recipe
             </button>

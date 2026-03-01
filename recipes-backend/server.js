@@ -71,6 +71,39 @@ app.post("/api/recipes", (req, res) => {
   });
 });
 
+// Get all recipes
+app.get("/api/recipes/:id", (req, res) => {
+  const sql = "SELECT * FROM recipes WHERE id = ?";
+  db.query(sql, [req.params.id], (err, results) => {
+    if (err) return res.status(500).json(err);
+    res.json(results);
+  });
+});
+
+// Edit A recipe
+app.put("/api/recipes/:id", (req, res) => {
+  const baseUrl = `${req.protocol}://${req.get("host")}`;
+  const sql = "UPDATE recipes SET name=?, category=?, ingredients=?, instructions=?, image=?, author=?, prepTime=?, cookTime=?, servings=? WHERE id=?";
+  const imageUrl = req.body.image ? baseUrl + req.body.image : null;
+
+  const values = [
+    req.body.name,
+    req.body.category,
+    JSON.stringify(req.body.ingredients),
+    JSON.stringify(req.body.instructions),
+    imageUrl,
+    req.body.author,
+    req.body.prepTime,
+    req.body.cookTime,
+    req.body.servings,
+    req.params.id,
+  ];
+  db.query(sql, values, (err, result) => {
+    if (err) return res.status(500).json(err);
+    res.json({ message: "Recipe updated!", result });
+  });
+});
+
 // Upload route (multer)
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "uploads"),

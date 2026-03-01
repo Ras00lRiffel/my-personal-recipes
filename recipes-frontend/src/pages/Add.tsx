@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Button/Button";
 import Input from "../components/Inputs/Input";
 
@@ -66,6 +66,28 @@ const initialRecipe = {
 const Add = () => {
   const [recipe, setRecipe] = useState(initialRecipe);
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (!id) return; // Only run when editing
+
+    const fetchRecipe = async () => {
+      try {
+        const res = await axios.get(`/api/recipes/${id}`);
+        const data = res.data[0]; // because MySQL returns array
+
+        setRecipe({
+          ...data,
+          ingredients: data.ingredients,
+          instructions: data.instructions,
+        });
+      } catch (error) {
+        console.error("Failed to fetch recipe", error);
+      }
+    };
+
+    fetchRecipe();
+  }, [id]);
 
   const handleChange = async (
     e: React.ChangeEvent<
@@ -101,8 +123,14 @@ const Add = () => {
   const handleClick = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      console.log("Submitting recipe:", recipe);
-      await axios.post("/api/recipes", recipe);
+      if (id) {
+        // EDIT
+        await axios.put(`/api/recipes/${id}`, recipe);
+      } else {
+        // CREATE
+        await axios.post("/api/recipes", recipe);
+      }
+
       navigate("/");
     } catch (error) {
       console.log(error);

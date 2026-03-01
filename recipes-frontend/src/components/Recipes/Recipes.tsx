@@ -14,6 +14,7 @@ const Recipes = (recipes: RecipeProps) => {
         {recipes.recipes.map((recipe) => (
           <div className="recipe-card" key={recipe.id} id={recipe.id}>
             <Recipe
+              id={recipe.id}
               name={recipe.name}
               image={recipe.image}
               ingredients={recipe.ingredients}

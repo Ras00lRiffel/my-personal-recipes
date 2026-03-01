@@ -32,7 +32,8 @@ const App = () => {
       <div className="max-w-7xl m-auto p-4 body-content">
         <Routes>
           <Route path="/" element={<Recipes recipes={recipes} />} />
-          <Route path="/add" element={<Add />} />
+          <Route path="/new" element={<Add />} />
+          <Route path="/edit/:id" element={<Add />} />
           <Route path="/gallery" element={<Gallery />} />
           {/* <Route path="/update/:id" element={} /> */}
         </Routes>

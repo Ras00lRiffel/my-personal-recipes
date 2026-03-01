@@ -34,7 +34,7 @@ const Header = () => {
               Home
             </span>
           </Link>
-          <Link to="/add">
+          <Link to="/new">
             <span className="font-bold md:hover:bg-orange-500 md:hover:text-white py-1 px-4 rounded-lg">
               Recipes
             </span>
@@ -64,7 +64,7 @@ const Header = () => {
               </span>
             </Link>
             <Link
-              to="/add"
+              to="/new"
               onClick={() => setMenuOpen(false)}
               className="w-full text-center hover:bg-orange-500 hover:text-white"
             >
